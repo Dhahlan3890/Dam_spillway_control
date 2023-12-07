@@ -1,12 +1,9 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from spillway_opening_function import control_gates
-import cv2
-from tkinter import filedialog
-
 
 heights = [0.0, 0.0]
-    
+
 class GatePositions:
     def __init__(self, master):
         self.master = master
@@ -22,7 +19,7 @@ class GatePositions:
         # Create and set up widgets
         self.label_height = ttk.Label(master, text="Height:")
         self.entry_height = ttk.Entry(master)
-        self.status_button = ttk.Button(master, text="Gate Status", command=self.open_video)
+        self.status_button = ttk.Button(master, text="Gate Status", command=self.get_status)
 
         # Layout
         self.logo_label.grid(row=0, column=0, columnspan=2, pady=10)
@@ -30,38 +27,7 @@ class GatePositions:
         self.label_height.grid(row=2, column=0, padx=10, pady=10)
         self.entry_height.grid(row=2, column=1, padx=10, pady=10)
         self.status_button.grid(row=4, column=0, columnspan=2, pady=10)
-
-    def open_video(self):
-        try:
-            height_value = float(self.entry_height.get())
-        except ValueError:
-            messagebox.showerror("Error", "Please enter a valid numeric value for Height.")
-            return
         
-        heights = [0.0, 0.0]
-        heights.append(height_value)
-
-        try:
-            gate_status = control_gates(heights)
-        
-            while gate_status.isOpened():
-                ret, frame = gate_status.read()
-                if ret:
-                    # Display the frame or perform any other operations here
-                    cv2.imshow("Video Player", frame)
-                    
-                    if cv2.waitKey(25) & 0xFF == ord('q'):
-                        break
-                else:
-                    break
-
-            gate_status.release()
-            cv2.destroyAllWindows()
-
-        except Exception as e:
-            messagebox.showerror("Error", f"An error occurred: {str(e)}")
-        
-            
     def get_status(self):
         try:
             height_value = float(self.entry_height.get())
@@ -78,13 +44,6 @@ class GatePositions:
             messagebox.showinfo("Prediction", f"The spillway will be \n{gate_status}")
         except Exception as e:
             messagebox.showerror("Error", f"An error occurred: {str(e)}")
-
-#root = tk.Tk()
-#root.title("Video Player")
-
-#Create a button to open the video
-#open_button = tk.Button(root, text="Open Video", command=open_video)
-#open_button.pack(pady=10)
 
 if __name__ == "__main__":
     # Add code to load and train your machine learning model

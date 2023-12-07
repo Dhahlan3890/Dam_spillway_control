@@ -1,131 +1,6 @@
-import cv2
-
-video1 = "./simulations/vid1.mp4"
-vid1 = cv2.VideoCapture(video1)
-# Check if the video opened successfully
-if not vid1.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video2 = "./simulations/vid2.mp4"
-vid2 = cv2.VideoCapture(video2)
-# Check if the video opened successfully
-if not vid2.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video3 = "./simulations/vid3.mp4"
-vid3 = cv2.VideoCapture(video3)
-# Check if the video opened successfully
-if not vid3.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video4 = "./simulations/vid4.mp4"
-vid4 = cv2.VideoCapture(video4)
-# Check if the video opened successfully
-if not vid4.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video5 = "./simulations/vid5.mp4"
-vid5 = cv2.VideoCapture(video5)
-# Check if the video opened successfully
-if not vid5.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video6 = "./simulations/vid6.mp4"
-vid6 = cv2.VideoCapture(video6)
-# Check if the video opened successfully
-if not vid6.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video7 = "./simulations/vid7.mp4"
-vid7 = cv2.VideoCapture(video7)
-# Check if the video opened successfully
-if not vid7.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video8 = "./simulations/vid8.mp4"
-vid8 = cv2.VideoCapture(video8)
-# Check if the video opened successfully
-if not vid8.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video9 = "./simulations/vid9.mp4"
-vid9 = cv2.VideoCapture(video9)
-# Check if the video opened successfully
-if not vid9.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video10 = "./simulations/vid10.mp4"
-vid10 = cv2.VideoCapture(video10)
-# Check if the video opened successfully
-if not vid10.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video11 = "./simulations/vid11.mp4"
-vid11 = cv2.VideoCapture(video11)
-# Check if the video opened successfully
-if not vid11.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video12 = "./simulations/vid12.mp4"
-vid12 = cv2.VideoCapture(video12)
-# Check if the video opened successfully
-if not vid12.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video13 = "./simulations/vid13.mp4"
-vid13 = cv2.VideoCapture(video13)
-# Check if the video opened successfully
-if not vid13.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video14 = "./simulations/vid14.mp4"
-vid14 = cv2.VideoCapture(video14)
-# Check if the video opened successfully
-if not vid14.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video15 = "./simulations/vid15.mp4"
-vid15 = cv2.VideoCapture(video15)
-# Check if the video opened successfully
-if not vid15.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video16 = "./simulations/vid16.mp4"
-vid16 = cv2.VideoCapture(video16)
-# Check if the video opened successfully
-if not vid16.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-video17 = "./simulations/vid17.mp4"
-vid17 = cv2.VideoCapture(video17)
-# Check if the video opened successfully
-if not vid17.isOpened():
-    print("Error: Could not open video.")
-    exit()
-
-
-
-# Now, 'frames' contains a list of frames from the video
-
 import matplotlib.pyplot as plt
-
-def create_boxes(gates, level, prev_level):
+"""
+def create_boxes(gates, level):
     # Create a figure and axis
     fig, ax = plt.subplots()
 
@@ -147,10 +22,8 @@ def create_boxes(gates, level, prev_level):
             rectangle_blue = plt.Rectangle((x_position, 0), box_width, level, fc='blue')
             ax.add_patch(rectangle_blue)
         else:
-            rectangle_red = plt.Rectangle((x_position, level), box_width, 9.4 - prev_level, fc='red')
-            ax.add_patch(rectangle_red)
-            rectangle_blue = plt.Rectangle((x_position, 0), box_width, level, fc='blue')
-            ax.add_patch(rectangle_blue)
+            rectangle = plt.Rectangle((x_position, 0), box_width, 9.4, fc='red')
+            ax.add_patch(rectangle)
 
     # Set the aspect ratio to 'equal' for square boxes
     ax.set_aspect('equal', adjustable='box')
@@ -164,7 +37,7 @@ def create_boxes(gates, level, prev_level):
 
 # Store the figure in a variable
 
-
+"""
 
 def control_gates(heights):
     
@@ -331,7 +204,7 @@ def control_gates(heights):
                 L14, L17, L16, L19, L18, L21, L20, L23, L22, L25, L24, L27, L26, L29, L28, L31, L30, L32 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
                 #print("gate L14 closed")
             elif water_height <= 438.30:
-                L17, L16, L19, L18, L21, L20, L23, L22, L25, L24, L27, L26, L29, L28, L31, L30, L32 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                L17, L16, L19, L18, L21, L20, L23, L22, L25, L24, L27, L26, L29, L28, L31, L30, L32 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
                 #print("gate L17 closed")
             elif water_height <= 438.31:
                 L16, L19, L18, L21, L20, L23, L22, L25, L24, L27, L26, L29, L28, L31, L30, L32 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -384,109 +257,62 @@ def control_gates(heights):
     
         gates = [L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,L13,L14,L15,L16,L17,L18,L19,L20,L21,L22,L23,L24,L25,L26,L27,L28,L29,L30,L31,L32]
         #gates = "Level 1 : " + str(L1) + "\n" + "Level 2 : " + str(L2) + "\n" + "Level 3 : " + str(L3) + "\n" + "Level 4 : " + str(L4) + "\n" + "Level 5 : " + str(L5) + "\n" + "Level 6 : " + str(L6) + "\n" + "Level 7 : " + str(L7) + "\n" + "Level 8 : " + str(L8) + "\n" + "Level 9 : " + str(L9) + "\n" + "Level 10 : " + str(L10) + "\n" + "Level 11 : " + str(L11) + "\n" + "Level 12 : " + str(L12) + "\n" + "Level 13 : " + str(L13) + "\n" + "Level 14 : " + str(L14) + "\n" + "Level 15 : " + str(L15) + "\n" + "Level 16 : " + str(L16) + "\n" + "Level 17 : " + str(L17) + "\n" + "Level 18 : " + str(L18) + "\n" + "Level 19 : " + str(L19) + "\n" + "Level 20 : " + str(L20) + "\n" + "Level 21 : " + str(L21) + "\n" + "Level 22 : " + str(L22) + "\n" + "Level 23 : " + str(L23) + "\n" + "Level 24 : " + str(L24) + "\n" + "Level 25 : " + str(L25) + "\n" + "Level 26 : " + str(L26) + "\n" + "Level 27 : " + str(L27) + "\n" + "Level 28 : " + str(L28) + "\n" + "Level 29 : " + str(L29) + "\n" + "Level 30 : " + str(L30) + "\n" + "Level 31 : " + str(L31) + "\n" + "Level 32 : " + str(L32) 
-        
-
-        gate_status = []
+        """
+        gate_status = create_boxes([], 0)
 
         if gates[31] == 1:
             gate_status = [3, 4, 2, 5 ,1, 6 , 0, 7]
             level = 9.4
-            prev_level = 4.7
-            Vid = vid1
         elif gates[29] == 1:
             gate_status = [3, 4, 2, 5 ,1, 6]
             level = 9.4
-            prev_level = 4.7
-            Vid = vid2
         elif gates[27] == 1:
             gate_status = [3, 4, 2, 5]
             level = 9.4
-            prev_level = 4.7
-            Vid = vid3
         elif gates[25] == 1:
             gate_status = [3, 4]
             level = 9.4
-            Vid = vid4
-            prev_level = 4.7
         elif gates[23] == 1:
             gate_status = [3, 4, 2, 5 ,1, 6 , 0, 7]
             level = 4.7
-            Vid = vid5
-            prev_level = 2.5
         elif gates[21] == 1:
             gate_status = [3, 4, 2, 5 ,1, 6]
             level = 4.7
-            prev_level = 2.5
-            Vid = vid6
         elif gates[19] == 1:
             gate_status = [3, 4, 2, 5]
             level = 4.7
-            prev_level = 2.5
-            Vid = vid7
         elif gates[17] == 1:
             gate_status = [3, 4]
             level = 4.7
-            prev_level = 2.5
-            Vid = vid8
         elif gates[15] == 1:
             gate_status = [3, 4, 2, 5 ,1, 6 , 0, 7]
             level = 2.5
-            prev_level = 0.7
-            Vid = vid9
         elif gates[13] == 1:
             gate_status = [3, 4, 2, 5 ,1, 6]
             level = 2.5
-            prev_level = 0.7
-            Vid = vid10
         elif gates[11] == 1:
             gate_status = [3, 4, 2, 5]
             level = 2.5
-            prev_level = 0.7
-            Vid = vid11
         elif gates[9] == 1:
             gate_status = [3, 4], 
             level = 2.5
-            prev_level = 0.7
-            Vid = vid12
         elif gates[7] == 1:
             gate_status = [3, 4, 2, 5 ,1, 6 , 0, 7]
             level = 0.7
-            prev_level = 0
-            Vid = vid13
         elif gates[5] == 1:
             gate_status = [3, 4, 2, 5 ,1, 6]
             level = 0.7
-            prev_level = 0
-            Vid = vid14
         elif gates[3] == 1:
             gate_status = [3, 4, 2, 5] 
             level = 0.7
-            prev_level = 0
-            Vid = vid15
         elif gates[1] == 1:
             gate_status = [2, 5]
             level = 0.7
-            prev_level = 0
-            Vid = vid16
         else:
             gate_status = []
             level = 0
-            Vid = vid17
-
-    return Vid
-"""
-    # Read the video frame by frame
-    frames = []
-    while True:
-        ret, frame = Vid.read()
-        if not ret:
-            break
-        frames.append(frame)
-
-    # Release the video capture object
-    cap.release()
-
-    return create_boxes(gate_status, level, prev_level)
-    
-    return gates
+        
+            
+    return create_boxes(gate_status, level)
     """
+        return gates
