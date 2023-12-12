@@ -1,28 +1,28 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from spillway_opening_function import control_gates
 import cv2
-from tkinter import filedialog
+from PIL import Image, ImageTk  # Make sure to install the Pillow library: pip install Pillow
+from spillway_opening_function import control_gates
 
-
-heights = [0.0, 0.0]
-    
 class GatePositions:
     def __init__(self, master):
         self.master = master
         self.master.title("Prediction App")
-        self.master.iconbitmap("icon.ico") 
+        self.master.iconbitmap("icon.ico")
 
         # Add a logo and company name
         self.logo = tk.PhotoImage(file="mahaweli-authority.png")  # Replace with the actual path to your logo image
         self.slogan_label = ttk.Label(master, text="An efficient way to control gates", font=('Arial', 10, 'italic'))
         self.logo_label = ttk.Label(master, image=self.logo)
-        
-        
+
         # Create and set up widgets
         self.label_height = ttk.Label(master, text="Height:")
         self.entry_height = ttk.Entry(master)
         self.status_button = ttk.Button(master, text="Gate Status", command=self.open_video)
+
+        # Create a canvas for displaying video frames
+        self.canvas = tk.Canvas(master)
+        self.canvas.grid(row=3, column=0, columnspan=2, pady=10)
 
         # Layout
         self.logo_label.grid(row=0, column=0, columnspan=2, pady=10)
@@ -37,58 +37,42 @@ class GatePositions:
         except ValueError:
             messagebox.showerror("Error", "Please enter a valid numeric value for Height.")
             return
-        
-        heights = [0.0, 0.0]
-        heights.append(height_value)
+
+        heights = [0.0, 0.0, height_value]  # Adjust the list for consistency
 
         try:
             gate_status = control_gates(heights)
-        
-            while gate_status.isOpened():
-                ret, frame = gate_status.read()
-                if ret:
-                    # Display the frame or perform any other operations here
-                    cv2.imshow("Video Player", frame)
-                    
-                    if cv2.waitKey(25) & 0xFF == ord('q'):
-                        break
-                else:
+            self.display_video(gate_status)
+        except Exception as e:
+            messagebox.showerror("Error", f"An error occurred: {str(e)}")
+
+    def display_video(self, gate_status):
+        while gate_status.isOpened():
+            ret, frame = gate_status.read()
+            if ret:
+                # Convert the frame from BGR to RGB
+                rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+                # Resize the frame to fit the canvas
+                img = Image.fromarray(rgb_frame)
+                img = img.resize((400, 300), Image.LANCZOS)
+
+                # Convert the frame to PhotoImage
+                tk_img = ImageTk.PhotoImage(img)
+
+                # Update the canvas with the new frame
+                self.canvas.create_image(0, 0, anchor=tk.NW, image=tk_img)
+                self.master.update_idletasks()
+
+                if cv2.waitKey(25) & 0xFF == ord('q'):
                     break
+            else:
+                break
 
-            gate_status.release()
-            cv2.destroyAllWindows()
-
-        except Exception as e:
-            messagebox.showerror("Error", f"An error occurred: {str(e)}")
-        
-            
-    def get_status(self):
-        try:
-            height_value = float(self.entry_height.get())
-        except ValueError:
-            messagebox.showerror("Error", "Please enter a valid numeric value for Height.")
-            return
-        
-        heights = [0.0, 0.0]
-        heights.append(height_value)
-        
-
-        try:
-            gate_status = control_gates(heights)
-            messagebox.showinfo("Prediction", f"The spillway will be \n{gate_status}")
-        except Exception as e:
-            messagebox.showerror("Error", f"An error occurred: {str(e)}")
-
-#root = tk.Tk()
-#root.title("Video Player")
-
-#Create a button to open the video
-#open_button = tk.Button(root, text="Open Video", command=open_video)
-#open_button.pack(pady=10)
+        gate_status.release()
+        cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    # Add code to load and train your machine learning model
-    
     # Create the main application window
     root = tk.Tk()
     app = GatePositions(root)
