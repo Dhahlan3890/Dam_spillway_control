@@ -7,12 +7,12 @@ total_frames = 100
 gate_heights = [9.5] * 8  # Initial gate heights for 8 gates
 opening_speed = 0.2
 thresholds = [438, 438.5, 439, 440]  # Water level thresholds for gate opening
-gate_level = [0.7, 0.7, 0.7, 0.7, 2.5, 2.5, 2.5, 2.5, 4.7, 4.7, 4.7, 4.7, 9.5, 9.5, 9.5, 9.5]
+gate_level = [0.7,2.5, 4.7, 9.5]
 
 # Function to update the plot in each frame
 def update(frame):
     global gate_heights
-    water_height = 439  # Initial water level
+    water_height = 439.5  # Initial water level
 
     # Clear the previous frame
     plt.clf()
