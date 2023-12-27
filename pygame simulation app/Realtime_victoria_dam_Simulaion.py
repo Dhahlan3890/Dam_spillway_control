@@ -391,9 +391,7 @@ while True:
         water_height += 0.1
 
         if box_height >= 438.04:
-            for i in range(7):
-                box4_level += 1
-                box5_level +=1
+            box4_level, box5_level = 7, 7
             water_fall_start4 = box4_x
             water_fall_start5 = box5_x
             flow_rate = 78 * 2
