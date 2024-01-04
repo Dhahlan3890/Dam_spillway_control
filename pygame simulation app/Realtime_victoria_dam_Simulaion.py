@@ -1,3 +1,6 @@
+#=================== CREATED BY ================ AHAMED DHAHLAN ==========================
+
+
 import pygame
 import sys
 import random
@@ -28,6 +31,7 @@ font1 = pygame.font.Font(None, 26)
 font2 = pygame.font.Font(None, 20)
 button_font = pygame.font.Font(None, 22)
 font4 = pygame.font.Font(None, 40)
+font5 = pygame.font.Font(None, 12)
 
 
 # Constants
@@ -55,7 +59,7 @@ screen_info = pygame.display.Info()
 scr_width = screen_info.current_w
 scr_height = screen_info.current_h
 
-button_x, button_y = WIDTH//12, HEIGHT//1.5
+button_x, button_y = 100/1000*WIDTH, 334/500*HEIGHT
 
 
 def draw_button():
@@ -228,15 +232,15 @@ while True:
     #WIDTH = screen.get_width()
     #HEIGHT = screen.get_height()
     
-    font = pygame.font.Font(None, int(36/500*HEIGHT))
-    font1 = pygame.font.Font(None, int(26/500*HEIGHT))
+    font = pygame.font.Font(None, int(34/500*HEIGHT))
+    font1 = pygame.font.Font(None, int(24/500*HEIGHT))
     font2 = pygame.font.Font(None, int(20/500*HEIGHT))
     button_font = pygame.font.Font(None, int(22/500*HEIGHT))
     font4 = pygame.font.Font(None, int(40/500*HEIGHT))
 
     button_width, button_height = 120/1000*WIDTH, 25/500*HEIGHT
 
-    button_x, button_y = WIDTH//12, HEIGHT//1.5
+    button_x, button_y = 88/1000*WIDTH, 380/500*HEIGHT
 
     ls_width, ls_height = 40/1000*WIDTH, 40/500*HEIGHT
     water_x, water_y = (WIDTH - water_width) // 2, (HEIGHT - water_height +30)/500*HEIGHT
@@ -388,7 +392,7 @@ while True:
     if keys[pygame.K_UP] or up_key_pressed:
         box_y -= 0.001
         box_height += 0.001
-        water_height += 0.1
+        water_height += 0.1/500*HEIGHT
 
         if box_height >= 438.04:
             box4_level, box5_level = 7, 7
@@ -566,7 +570,7 @@ while True:
     if keys[pygame.K_DOWN]:
         box_y += 0.001
         box_height -= 0.001
-        water_height -= 0.1
+        water_height -= 0.1/500*HEIGHT
         
 
         if box_height < 438.04 - 0.06:
@@ -953,9 +957,14 @@ while True:
     """
 
     # Render and display the blue box height
-    height_text = font.render(f"Water Level: {box_height:.3f} m", True, (255, 255, 255))
+    pygame.draw.rect(surface, GRAY, (5/1000*WIDTH, 5/500*HEIGHT, 280/1000*WIDTH, 60/500*HEIGHT))
+    height_text = font.render(f"Water Level: {box_height:.3f} m", True, (0,0,0))
+    #shadow_text = font.render(f"Water Level: {box_height:.3f} m", True, (50, 50, 100))
+    #screen.blit(shadow_text, (10/1000*WIDTH + 1.5, 10/500*HEIGHT + 1.5))
     screen.blit(height_text, (10/1000*WIDTH, 10/500*HEIGHT))
-    height_text = font1.render(f"Flow Rate: {flow_rate:.3f} m3/s", True, (255, 255, 255))
+    height_text = font1.render(f"Flow Rate: {flow_rate:.3f} m3/s", True, (0,0,0))
+    #shadow_text = font1.render(f"Flow Rate: {flow_rate:.3f} m3/s", True, (50, 50, 100))
+    #screen.blit(shadow_text, (10/1000*WIDTH + 1, 40/500*HEIGHT + 1))
     screen.blit(height_text, (10/1000*WIDTH, 40/500*HEIGHT))
 
     all_sprites.update()
@@ -964,16 +973,35 @@ while True:
 
     resized_icon = pygame.transform.scale(icon_image, (WIDTH//4,HEIGHT//4))
 
-    screen.blit(resized_icon, (25/1000*WIDTH, HEIGHT//4.5))
+    screen.blit(resized_icon, (19/1000*WIDTH, HEIGHT//4.5))
 
     height_text = font1.render("MAHAWELI AUTHORITY", True, (255, 255, 255))
+    shadow_text = font1.render("MAHAWELI AUTHORITY", True, (25, 25, 50))
+    
+    screen.blit(shadow_text, (50/1000*WIDTH+2, 250/500*HEIGHT+2))
     screen.blit(height_text, (50/1000*WIDTH, 250/500*HEIGHT))
     height_text = font1.render("OF", True, (255, 255, 255))
-    screen.blit(height_text, (140/1000*WIDTH, 270/500*HEIGHT))
+    shadow_text = font1.render("OF", True, (25, 25, 50))
+    
+    screen.blit(shadow_text, (132/1000*WIDTH+2, 270/500*HEIGHT+2))
+    screen.blit(height_text, (132/1000*WIDTH, 270/500*HEIGHT))
     height_text = font1.render("SRI LANKA", True, (255, 255, 255))
+    shadow_text = font1.render("SRI LANKA", True, (25, 25, 50))
+    
+    screen.blit(shadow_text, (100/1000*WIDTH+2, 290/500*HEIGHT+2))
     screen.blit(height_text, (100/1000*WIDTH, 290/500*HEIGHT))
     height_text = font2.render("EIC OFFICE - VICTORIA", True, (255, 255, 255))
-    screen.blit(height_text, (75/1000*WIDTH, 310/500*HEIGHT))
+    shadow_text = font2.render("EIC OFFICE - VICTORIA", True, (25, 25, 50))
+    
+    screen.blit(shadow_text, (72/1000*WIDTH+2, 310/500*HEIGHT+2))
+    screen.blit(height_text, (72/1000*WIDTH, 310/500*HEIGHT))
+
+    height_text = font5.render("Dhahaln A.S.A. - Thaseenthan S. - Senevirathne H.A.M.I.C.", True, (0,0,0))
+    pygame.draw.rect(surface, (255, 255, 255, 180), (980/1000*WIDTH - height_text.get_width(), 480/500*HEIGHT - height_text.get_height(), 280/1000*WIDTH, 60/500*HEIGHT))
+    
+    screen.blit(height_text, (990/1000*WIDTH - height_text.get_width(), 485/500*HEIGHT - height_text.get_height()))
+    height_text1 = font5.render("Faculty of Engineering - University of Ruhuna", True, (0,0,0))
+    screen.blit(height_text1, (990/1000*WIDTH - height_text.get_width(), 495/500*HEIGHT - height_text.get_height()))
 
 
 
